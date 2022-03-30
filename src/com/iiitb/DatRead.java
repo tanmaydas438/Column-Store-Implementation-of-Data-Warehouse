@@ -4,6 +4,7 @@ import java.io.EOFException;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.io.FileNotFoundException;
 import java.io.BufferedOutputStream;
 import java.io.BufferedInputStream;
@@ -18,6 +19,11 @@ public class DatRead {
 		
 		//String pa="D:\IIITB\Term II\DM\Project\dwh1\\\dim3\\dim3-attr2.dat";
 		Utility util=new Utility();
+		HashSet<String> products=util.getStringUniqueValues("PRODUCTNAME");
+		for(String p:products)
+		{
+			System.out.println(p);
+		}
 		
 		//System.out.println(util.getAttributePath("dim1-attr1"));
 		/*HashMap<String,Integer> hm=util.getIntegerColumnValues("dim1-attr1");
@@ -27,7 +33,7 @@ public class DatRead {
 			System.out.print(hm.get(key));
 			System.out.println();
 		}*/
-		try{
+		/*try{
             String attr = "";
             String p = "";
             DataInputStream din = new DataInputStream( new BufferedInputStream( 
@@ -58,7 +64,7 @@ public class DatRead {
         }
        catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 
 	}

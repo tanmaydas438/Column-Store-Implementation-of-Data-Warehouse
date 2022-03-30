@@ -20,6 +20,15 @@
   	<url-pattern>/csvuploadservlet</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>abcde</servlet-name>
+  	<servlet-class>com.iiitb.FilterPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcde</servlet-name>
+  	<url-pattern>/filter</url-pattern>
+  </servlet-mapping>
+  
   
   <display-name>DemoDM</display-name>
   <welcome-file-list>

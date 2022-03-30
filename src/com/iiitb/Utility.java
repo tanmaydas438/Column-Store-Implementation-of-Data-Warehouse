@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -237,5 +238,36 @@ public class Utility {
 	        }
 		 
 		 return hm;
+	 }
+	 
+	 public HashSet<String> getStringUniqueValues(String name)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(name);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                String value=din.readUTF();
+	                hs.add(value);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs;
 	 }
 }

@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +54,7 @@ public class AddServlet extends HttpServlet{
 		    createFolder(targetPath);
 		    res.getWriter().print("The folder created sucessfully.");
 		    res.sendRedirect("uploadcsv.html");
+		    
 	}
 	
 	//method to extract filename of the uploaded file....
