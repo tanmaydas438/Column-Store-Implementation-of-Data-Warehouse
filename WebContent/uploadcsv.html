@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .heading1 {
+    position: absolute;
+    /* background-color: rgb(245, 230, 19); */
+    vertical-align: middle;
+    color: rgb(255, 5, 159);
+    top: 30%;
+    left: 33%;
+    /* height: 5%;
+    width: 5%; */
+    font-size: 150%;
+    
+    
+}
+.heading2 {
+   
+    
+    
+    background-image: url("Upload_Backgroud2.jpg");
+    
+}
+.heading3 {
+    position: absolute;
+    /* background-color: rgb(194, 219, 219);  */
+    color: rgb(255, 5, 159);
+    top: 15%;
+    left: 42%;
+    height: 15%;
+    width: 15%;
+    font-size: 150%;
+    
+}
+
+.heading4 {
+    position: absolute;
+    /* background-color: rgb(245, 230, 19); */
+    vertical-align: middle;
+    color: rgb(255, 5, 159);
+    top: 34%;
+    left: 40%;
+    /* height: 5%;
+    width: 5%; */
+    font-size: 150%;
+    
+    
+}
+</style>
+
+<body class="heading2">
+    <h1 style="text-align: center; vertical-align: middle; color: white;">Upload CSV File</h1>
+    <div class="heading3">
+        <label for="dimension"><b>Select Dimension:</b></label>
+
+        <select name="Dimensions" id="dimension" style="height:30%;">
+        <option value="Fact_Table">Fact_Table</option>
+        <option value="Dim1">Dim1</option>
+        <option value="Dim2">Dim2</option>
+        <option value="Dim3">Dim3</option>
+        <option value="Dim4">Dim4</option>
+        <option value="Dim5">Dim5</option>
+        <option value="Dim6">Dim6</option>
+        <option value="Dim7">Dim7</option>
+        </select>
+    </div>
+<br>
+    <div class="heading1">
+        <form method="post" action="csvuploadservlet" enctype="multipart/form-data">
+            <div>
+                
+                <label for="myfile"><b>Select a file:</b></label>
+                <input type="file" id="myfile" name="myfile">
+            </div>
+            <a href="">
+                <input type="submit" value="Upload" />
+            </a>
+        </form>
+    </div>
+<br>
+    
+    
+</body>
+</html>

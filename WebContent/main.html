@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+</head>
+<style>
+    .heading1 {
+    position: absolute;
+    background-color: rgb(245, 230, 19);
+    vertical-align: middle;
+    top: 70%;
+    left: 44%;
+    height: 5%;
+    width: 5%;
+    font-size: 100%;
+    
+}
+.heading2 {
+   
+    
+    
+    background-image: url("fileupload.png");
+    
+}
+.heading3 {
+    position: absolute;
+    /* background-color: rgb(194, 219, 219);  */
+    color: rgb(255, 230, 5);
+    vertical-align: middle;
+    top: 20%;
+    left: 40%;
+    height: 15%;
+    width: 15%;
+    font-size: 150%;
+    
+}
+</style>
+
+<body class="heading2">
+    <form method="post" action="fileuploadservlet" enctype="multipart/form-data">
+        <div class="heading3">
+            
+            <label for="myfile"><b>Select a file:</b></label>
+            <input type="file" id="myfile" name="file" >
+        
+        <a href="">
+            <input type="submit" value="Upload" />
+        </a>
+        </div>
+    </form>
+</body>
+</html>
