@@ -29,6 +29,15 @@
   	<url-pattern>/filter</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>abcdf</servlet-name>
+  	<servlet-class>com.iiitb.FilterFromDat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdf</servlet-name>
+  	<url-pattern>/filterFromDat</url-pattern>
+  </servlet-mapping>
+  
   
   <display-name>DemoDM</display-name>
   <welcome-file-list>

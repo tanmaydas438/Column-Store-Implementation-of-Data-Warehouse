@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -366,7 +367,7 @@ public class Utility {
 	 }
 	 public HashSet<String> getStringAttributesForRowIds(HashSet<String> rows,String attr)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 HashSet<String> hs=new HashSet<String>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -398,7 +399,7 @@ public class Utility {
 	 
 	 public HashSet<Double> getDoubleAttributesForRowIds(HashSet<String> rows,String attr)
 	 {
-		 HashSet<Double> hs=new HashSet<>();
+		 HashSet<Double> hs=new HashSet<Double>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -430,7 +431,7 @@ public class Utility {
 	 
 	 public HashSet<Integer> getIntegerAttributesForRowIds(HashSet<String> rows,String attr)
 	 {
-		 HashSet<Integer> hs=new HashSet<>();
+		 HashSet<Integer> hs=new HashSet<Integer>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -444,6 +445,124 @@ public class Utility {
 	                int data=din.readInt();
 	                if(rows.contains(rowId))
 	                	hs.add(data);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 public HashSet<String> getProductForiegnKeys(Product product)
+	 {
+		 Utility util=new Utility();
+		 HashSet<String> hs=new HashSet<>();
+		 if(!product.getPRODUCTNAME().equals(""))
+		 {
+			 HashSet<String> temp1=util.getRowIdForStringAttributes("PRODUCTNAME", product.getPRODUCTNAME());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 
+		 if(!product.getCATEGORY().equals(""))
+		 {
+			 HashSet<String> temp1=util.getRowIdForStringAttributes("CATEGORY", product.getCATEGORY());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 hs=util.getStringAttributesForRowIds(hs, "PRODUCTKEY");
+		 //System.out.println(hs);
+		 
+		 return hs;
+	 }
+	 
+	 public HashSet<String> getCustomerForiegnKeys(Customer customer)
+	 {
+		 Utility util=new Utility();
+		 HashSet<String> hs=new HashSet<>();
+		 if(!customer.getCUSTOMERCITY().equals(""))
+		 {
+			 HashSet<String> temp1=util.getRowIdForStringAttributes("CUSTOMERCITY", customer.getCUSTOMERCITY());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 
+		 if(!customer.getCUSTOMERTYPE().equals(""))
+		 {
+			 HashSet<String> temp1=util.getRowIdForStringAttributes("CUSTOMERTYPE", customer.getCUSTOMERTYPE());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 hs=util.getStringAttributesForRowIds(hs, "CUSTOMERKEY");
+		 //System.out.println(hs);
+		 
+		 return hs;
+	 }
+	 
+	 public HashSet<String> getSalesPersonForiegnKeys(SalesPerson person)
+	 {
+		 Utility util=new Utility();
+		 HashSet<String> hs=new HashSet<>();
+		 if(!person.getSALESPERSONTYPE().equals(""))
+		 {
+			 HashSet<String> temp1=util.getRowIdForStringAttributes("SALESPERSONTYPE", person.getSALESPERSONTYPE());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 
+		 if(!(person.getSALESPERSONEXPERIENCE()==0.0))
+		 {
+			 HashSet<String> temp1=util.getRowIdForDoubleAttributes("SALESPERSONEXPERIENCE", person.getSALESPERSONEXPERIENCE());
+			 if(hs.size()==0)
+				 hs=temp1;
+			 else
+				 hs.retainAll(temp1);
+			 
+		 }
+		 hs=util.getStringAttributesForRowIds(hs, "SALESPERSONKEY");
+		 //System.out.println(hs);
+		 
+		 return hs;
+	 }
+	 
+	 public HashSet<String> getRowIdsFromSalesForForiegnKeys(HashSet<String> keys,String keyName)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(keyName);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                String data=din.readUTF();
+	                if(keys.contains(data))
+	                hs.add(rowId);
 	            }}catch(EOFException e){
 	            	e.printStackTrace();
 	            }

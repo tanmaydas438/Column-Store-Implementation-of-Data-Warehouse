@@ -9,13 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form method="post" action="filterFromDat"> 
 <h1>Product Name</h1>
 <select name="productname" id="productname">
     <c:forEach items="${productNames}" var="productName">
         <option value="${productName}">${productName}</option>
     </c:forEach>
     </select>
-    
+   
 <h1>Category</h1>
 <select name="category" id="category">
     <c:forEach items="${categories}" var="category">
@@ -43,7 +44,7 @@
         <option value="${type}">${type}</option>
     </c:forEach>
     </select>
-     
-                             
+ <input type="submit" value="Filter" />    
+</form>                             
 </body>
 </html>

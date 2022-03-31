@@ -19,10 +19,14 @@ public class DatRead {
 		
 		//String pa="D:\IIITB\Term II\DM\Project\dwh1\\\dim3\\dim3-attr2.dat";
 		Utility util=new Utility();
-		HashSet<String> products=util.getStringUniqueValues("PRODUCTNAME");
-		for(String p:products)
+		Customer p=new Customer();
+		p.setCUSTOMERCITY("Chennai");
+		p.setCUSTOMERTYPE("Wholesale");
+		HashSet<String> products=util.getCustomerForiegnKeys(p);
+		
+		for(String pr:products)
 		{
-			System.out.println(p);
+			System.out.println(pr);
 		}
 		
 		//System.out.println(util.getAttributePath("dim1-attr1"));

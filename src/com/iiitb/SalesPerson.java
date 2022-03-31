@@ -1,0 +1,26 @@
+package com.iiitb;
+
+public class SalesPerson {
+	private String SALESPERSONKEY="";
+	private String SALESPERSONTYPE="";
+	public double SALESPERSONEXPERIENCE=0.0;
+	public String getSALESPERSONKEY() {
+		return SALESPERSONKEY;
+	}
+	public void setSALESPERSONKEY(String sALESPERSONKEY) {
+		SALESPERSONKEY = sALESPERSONKEY;
+	}
+	public String getSALESPERSONTYPE() {
+		return SALESPERSONTYPE;
+	}
+	public void setSALESPERSONTYPE(String sALESPERSONTYPE) {
+		SALESPERSONTYPE = sALESPERSONTYPE;
+	}
+	public double getSALESPERSONEXPERIENCE() {
+		return SALESPERSONEXPERIENCE;
+	}
+	public void setSALESPERSONEXPERIENCE(double sALESPERSONEXPERIENCE) {
+		SALESPERSONEXPERIENCE = sALESPERSONEXPERIENCE;
+	}
+	
+}
