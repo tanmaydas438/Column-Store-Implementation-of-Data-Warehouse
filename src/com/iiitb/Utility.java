@@ -270,4 +270,193 @@ public class Utility {
 	        }
 		 return hs;
 	 }
+	 public HashSet<String> getRowIdForStringAttributes(String attr,String value)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                String data=din.readUTF();
+	                if(data.equals(value))
+	                hs.add(rowId);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 
+	 public HashSet<String> getRowIdForDoubleAttributes(String attr,double value)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                double data=din.readDouble();
+	                if(data==value)
+	                hs.add(rowId);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 public HashSet<String> getRowIdForIntegerAttributes(String attr,int value)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                int data=din.readInt();
+	                if(data==value)
+	                	hs.add(rowId);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 public HashSet<String> getStringAttributesForRowIds(HashSet<String> rows,String attr)
+	 {
+		 HashSet<String> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                String data=din.readUTF();
+	                if(rows.contains(rowId))
+	                	hs.add(data);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 
+	 public HashSet<Double> getDoubleAttributesForRowIds(HashSet<String> rows,String attr)
+	 {
+		 HashSet<Double> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                double data=din.readDouble();
+	                if(rows.contains(rowId))
+	                	hs.add(data);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
+	 
+	 public HashSet<Integer> getIntegerAttributesForRowIds(HashSet<String> rows,String attr)
+	 {
+		 HashSet<Integer> hs=new HashSet<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath(attr);
+		 //System.out.println("hello");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String rowId=din.readUTF();
+	                int data=din.readInt();
+	                if(rows.contains(rowId))
+	                	hs.add(data);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return hs; 
+	 }
 }
