@@ -12,13 +12,16 @@
 <form method="post" action="filterFromDat"> 
 <h1>Product Name</h1>
 <select name="productname" id="productname">
+	<option value="">---</option>
     <c:forEach items="${productNames}" var="productName">
         <option value="${productName}">${productName}</option>
     </c:forEach>
+    <option></option>
     </select>
    
 <h1>Category</h1>
 <select name="category" id="category">
+	<option value="">---</option>
     <c:forEach items="${categories}" var="category">
         <option value="${category}">${category}</option>
     </c:forEach>
@@ -26,13 +29,15 @@
     
 <h1>Customer City</h1>
 <select name="customercity" id="customercity">
+	<option value="">---</option>
     <c:forEach items="${customerCities}" var="city">
         <option value="${city}">${city}</option>
     </c:forEach>
     </select>
     
-<h1>Category</h1>
+<h1>Customer Type</h1>
 <select name="customertype" id="customertype">
+	<option value="">---</option>
     <c:forEach items="${customerTypes}" var="type">
         <option value="${type}">${type}</option>
     </c:forEach>
@@ -40,6 +45,7 @@
     
 <h1>SalersPerson Type</h1>
 <select name="salespersontype" id="salespersontype">
+	<option value="">---</option>
     <c:forEach items="${salesPersonTypes}" var="type">
         <option value="${type}">${type}</option>
     </c:forEach>

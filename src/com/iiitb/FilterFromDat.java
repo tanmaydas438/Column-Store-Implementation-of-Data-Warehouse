@@ -2,7 +2,7 @@ package com.iiitb;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,20 +27,31 @@ public class FilterFromDat extends HttpServlet{
 		salesperson.setSALESPERSONTYPE(salespersontype);
 		
 		Utility util=new Utility(); 
-		HashSet<String> productKeys=util.getProductForiegnKeys(product);
-		HashSet<String> customerKeys=util.getCustomerForiegnKeys(customer);
-		HashSet<String> personKeys=util.getSalesPersonForiegnKeys(salesperson);
+		ArrayList<String> productKeys=util.getProductForiegnKeys(product);
+		ArrayList<String> customerKeys=util.getCustomerForiegnKeys(customer);
+		ArrayList<String> personKeys=util.getSalesPersonForiegnKeys(salesperson);
 		
-		HashSet<String> productRowIds=util.getRowIdsFromSalesForForiegnKeys(productKeys, "PRODUCTKEY-fk");
-		HashSet<String> customerRowIds=util.getRowIdsFromSalesForForiegnKeys(customerKeys,"CUSTOMERKEY-fk");
-		HashSet<String> personRowIds=util.getRowIdsFromSalesForForiegnKeys(personKeys,"SALESPERSONKEY-fk");
+		ArrayList<String> productRowIds=util.getRowIdsFromSalesForForiegnKeys(productKeys, "PRODUCTKEY-fk");
+		ArrayList<String> customerRowIds=util.getRowIdsFromSalesForForiegnKeys(customerKeys,"CUSTOMERKEY-fk");
+		ArrayList<String> personRowIds=util.getRowIdsFromSalesForForiegnKeys(personKeys,"SALESPERSONKEY-fk");
 		
-		HashSet<String> rows=new HashSet<>();
+		ArrayList<String> rows=new ArrayList<>();
+		
 		rows=productRowIds;
-		rows.retainAll(customerRowIds);
-		rows.retainAll(personRowIds);
+		if(rows.size()==0)
+			rows=customerRowIds;
+		else if(customerRowIds.size()>0)
+			rows.retainAll(customerRowIds);
+		if(rows.size()==0)
+			rows=personRowIds;
+		else if(personRowIds.size()>0)
+			rows.retainAll(personRowIds);
 		
-		HashSet<Integer> salesUnit=new HashSet<Integer>();
+		
+		System.out.println(rows);
+		
+		/*
+		 ArrayList<Integer> salesUnit=new ArrayList<Integer>();
 		salesUnit=util.getIntegerAttributesForRowIds(rows, "SALE_UNITS");
 		
 		//System.out.println("hello");
@@ -51,11 +62,44 @@ public class FilterFromDat extends HttpServlet{
 		{
 			totalSales+=data;
 			count++;
-		}	
+		}
+		//System.out.println("product:  "+util.getProduct(rows.get(0)).getPRODUCTNAME());
+		//getting all the object for rows
+		ArrayList<Product> productList=new ArrayList<>();
+		ArrayList<Customer> customerList=new ArrayList<>();
+		ArrayList<SalesPerson> salesPersonList=new ArrayList<>();
 		
+		for(int i=0;i<rows.size();i++)
+		{
+			Product p=util.getProduct(rows.get(i));
+			Customer c=util.getCustomer(rows.get(i));
+			SalesPerson s=util.getSalesPerson(rows.get(i));
+			productList.add(i,p);
+			customerList.add(i,c);
+			salesPersonList.add(i, s);
+		}
+		req.setAttribute("productList", productList);
+		req.setAttribute("customerList", customerList);
+		req.setAttribute("salesPersonList", salesPersonList);
 		req.setAttribute("salesUnit", salesUnit);
 		req.setAttribute("totalSales", totalSales);
 		req.setAttribute("count", count);
+		*/
+		ArrayList<Sales> salesList=new ArrayList<>();
+		for(int i=0;i<rows.size();i++)
+		{
+			Product p=util.getProduct(rows.get(i));
+			Customer c=util.getCustomer(rows.get(i));
+			SalesPerson s=util.getSalesPerson(rows.get(i));
+			int salesUnit=util.getIntegerAttributeForParticularRowId(rows.get(i), "SALE_UNITS");
+			Sales sale=new Sales();
+			sale.setProduct(p);
+			sale.setCustomer(c);
+			sale.setSalesperson(s);
+			sale.setSlaesUnit(salesUnit);
+			salesList.add(i, sale);
+		}
+		req.setAttribute("salesList", salesList);
 		String filterPage = "Result.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(filterPage);
         dispatcher.forward(req, res);

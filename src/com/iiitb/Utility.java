@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -241,9 +241,9 @@ public class Utility {
 		 return hm;
 	 }
 	 
-	 public HashSet<String> getStringUniqueValues(String name)
+	 public ArrayList<String> getStringUniqueValues(String name)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(name);
 		 //System.out.println("hello");
@@ -271,9 +271,9 @@ public class Utility {
 	        }
 		 return hs;
 	 }
-	 public HashSet<String> getRowIdForStringAttributes(String attr,String value)
+	 public ArrayList<String> getRowIdForStringAttributes(String attr,String value)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -303,9 +303,9 @@ public class Utility {
 		 return hs; 
 	 }
 	 
-	 public HashSet<String> getRowIdForDoubleAttributes(String attr,double value)
+	 public ArrayList<String> getRowIdForDoubleAttributes(String attr,double value)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -334,9 +334,9 @@ public class Utility {
 	        }
 		 return hs; 
 	 }
-	 public HashSet<String> getRowIdForIntegerAttributes(String attr,int value)
+	 public ArrayList<String> getRowIdForIntegerAttributes(String attr,int value)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -365,9 +365,9 @@ public class Utility {
 	        }
 		 return hs; 
 	 }
-	 public HashSet<String> getStringAttributesForRowIds(HashSet<String> rows,String attr)
+	 public ArrayList<String> getStringAttributesForRowIds(ArrayList<String> rows,String attr)
 	 {
-		 HashSet<String> hs=new HashSet<String>();
+		 ArrayList<String> hs=new ArrayList<String>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -397,9 +397,9 @@ public class Utility {
 		 return hs; 
 	 }
 	 
-	 public HashSet<Double> getDoubleAttributesForRowIds(HashSet<String> rows,String attr)
+	 public ArrayList<Double> getDoubleAttributesForRowIds(ArrayList<String> rows,String attr)
 	 {
-		 HashSet<Double> hs=new HashSet<Double>();
+		 ArrayList<Double> hs=new ArrayList<Double>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -429,9 +429,9 @@ public class Utility {
 		 return hs; 
 	 }
 	 
-	 public HashSet<Integer> getIntegerAttributesForRowIds(HashSet<String> rows,String attr)
+	 public ArrayList<Integer> getIntegerAttributesForRowIds(ArrayList<String> rows,String attr)
 	 {
-		 HashSet<Integer> hs=new HashSet<Integer>();
+		 ArrayList<Integer> hs=new ArrayList<Integer>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(attr);
 		 //System.out.println("hello");
@@ -460,13 +460,13 @@ public class Utility {
 	        }
 		 return hs; 
 	 }
-	 public HashSet<String> getProductForiegnKeys(Product product)
+	 public ArrayList<String> getProductForiegnKeys(Product product)
 	 {
 		 Utility util=new Utility();
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 if(!product.getPRODUCTNAME().equals(""))
 		 {
-			 HashSet<String> temp1=util.getRowIdForStringAttributes("PRODUCTNAME", product.getPRODUCTNAME());
+			 ArrayList<String> temp1=util.getRowIdForStringAttributes("PRODUCTNAME", product.getPRODUCTNAME());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -476,7 +476,7 @@ public class Utility {
 		 
 		 if(!product.getCATEGORY().equals(""))
 		 {
-			 HashSet<String> temp1=util.getRowIdForStringAttributes("CATEGORY", product.getCATEGORY());
+			 ArrayList<String> temp1=util.getRowIdForStringAttributes("CATEGORY", product.getCATEGORY());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -489,13 +489,13 @@ public class Utility {
 		 return hs;
 	 }
 	 
-	 public HashSet<String> getCustomerForiegnKeys(Customer customer)
+	 public ArrayList<String> getCustomerForiegnKeys(Customer customer)
 	 {
 		 Utility util=new Utility();
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 if(!customer.getCUSTOMERCITY().equals(""))
 		 {
-			 HashSet<String> temp1=util.getRowIdForStringAttributes("CUSTOMERCITY", customer.getCUSTOMERCITY());
+			 ArrayList<String> temp1=util.getRowIdForStringAttributes("CUSTOMERCITY", customer.getCUSTOMERCITY());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -505,7 +505,7 @@ public class Utility {
 		 
 		 if(!customer.getCUSTOMERTYPE().equals(""))
 		 {
-			 HashSet<String> temp1=util.getRowIdForStringAttributes("CUSTOMERTYPE", customer.getCUSTOMERTYPE());
+			 ArrayList<String> temp1=util.getRowIdForStringAttributes("CUSTOMERTYPE", customer.getCUSTOMERTYPE());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -518,13 +518,13 @@ public class Utility {
 		 return hs;
 	 }
 	 
-	 public HashSet<String> getSalesPersonForiegnKeys(SalesPerson person)
+	 public ArrayList<String> getSalesPersonForiegnKeys(SalesPerson person)
 	 {
 		 Utility util=new Utility();
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 if(!person.getSALESPERSONTYPE().equals(""))
 		 {
-			 HashSet<String> temp1=util.getRowIdForStringAttributes("SALESPERSONTYPE", person.getSALESPERSONTYPE());
+			 ArrayList<String> temp1=util.getRowIdForStringAttributes("SALESPERSONTYPE", person.getSALESPERSONTYPE());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -534,7 +534,7 @@ public class Utility {
 		 
 		 if(!(person.getSALESPERSONEXPERIENCE()==0.0))
 		 {
-			 HashSet<String> temp1=util.getRowIdForDoubleAttributes("SALESPERSONEXPERIENCE", person.getSALESPERSONEXPERIENCE());
+			 ArrayList<String> temp1=util.getRowIdForDoubleAttributes("SALESPERSONEXPERIENCE", person.getSALESPERSONEXPERIENCE());
 			 if(hs.size()==0)
 				 hs=temp1;
 			 else
@@ -547,9 +547,9 @@ public class Utility {
 		 return hs;
 	 }
 	 
-	 public HashSet<String> getRowIdsFromSalesForForiegnKeys(HashSet<String> keys,String keyName)
+	 public ArrayList<String> getRowIdsFromSalesForForiegnKeys(ArrayList<String> keys,String keyName)
 	 {
-		 HashSet<String> hs=new HashSet<>();
+		 ArrayList<String> hs=new ArrayList<>();
 		 Utility util=new Utility();
 		 String path=util.getAttributePath(keyName);
 		 //System.out.println("hello");
@@ -577,5 +577,187 @@ public class Utility {
 	            System.out.println(e.getMessage());
 	        }
 		 return hs; 
+	 }
+	 
+	 public String getStringAttributeForParticularRowId(String rowId,String attr)
+	 {
+		String value="";
+		Utility util=new Utility();
+		String path=util.getAttributePath(attr);
+		try{
+            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+                                      new FileInputStream(path) ) );
+            
+            
+			try{while(din.available()>0){
+				String id=din.readUTF();
+                String data=din.readUTF();
+                if(id.equals(rowId))
+                {
+                	value=data;
+                	break;
+                }
+            }}catch(EOFException e){
+            	e.printStackTrace();
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+       catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+       catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+	 return value;
+	 }
+	 
+	 public int getIntegerAttributeForParticularRowId(String rowId,String attr)
+	 {
+		int value=0;
+		Utility util=new Utility();
+		String path=util.getAttributePath(attr);
+		try{
+            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+                                      new FileInputStream(path) ) );
+            
+            
+			try{while(din.available()>0){
+				String id=din.readUTF();
+                int data=din.readInt();
+                if(id.equals(rowId))
+                {
+                	value=data;
+                	break;
+                }
+            }}catch(EOFException e){
+            	e.printStackTrace();
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+       catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+       catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+	 return value;
+	 }
+	 
+	 public double getDoubleAttributeForParticularRowId(String rowId,String attr)
+	 {
+		double value=0.0;
+		Utility util=new Utility();
+		String path=util.getAttributePath(attr);
+		try{
+            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+                                      new FileInputStream(path) ) );
+            
+            
+			try{while(din.available()>0){
+				String id=din.readUTF();
+                double data=din.readDouble();
+                if(id.equals(rowId))
+                {
+                	value=data;
+                	break;
+                }
+            }}catch(EOFException e){
+            	e.printStackTrace();
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+       catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+       catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+	 return value;
+	 }
+	 
+	 public String getParticularRowIdForStringAttr(String attr,String value)
+	 {
+		String rowId="";
+		Utility util=new Utility();
+		String path=util.getAttributePath(attr);
+		try{
+            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+                                      new FileInputStream(path) ) );
+            
+            
+			try{while(din.available()>0){
+				String id=din.readUTF();
+                String data=din.readUTF();
+                if(data.equals(value))
+                {
+                	rowId=id;
+                	break;
+                }
+            }}catch(EOFException e){
+            	e.printStackTrace();
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+       catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+       catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+	 return rowId;
+	 }
+	 
+	  
+	 public Product getProduct(String rowIdFactTable)
+	 {
+		 Product p=new Product();
+		 Utility util=new Utility();
+	
+		 String productKey=util.getStringAttributeForParticularRowId(rowIdFactTable, "PRODUCTKEY-fk");
+		 
+		 String rowIdInProductTable=util.getParticularRowIdForStringAttr("PRODUCTKEY", productKey);
+		 String productName=util.getStringAttributeForParticularRowId(rowIdInProductTable,"PRODUCTNAME");
+		 String category=util.getStringAttributeForParticularRowId(rowIdInProductTable, "CATEGORY");
+		 p.setPRODUCTKEY(productKey);
+		 p.setPRODUCTNAME(productName);
+		 p.setCATEGORY(category);
+		 return p;
+	 }
+	 
+	 public Customer getCustomer(String rowIdFactTable)
+	 {
+		 Customer c=new Customer();
+		 Utility util=new Utility();
+		 String customerKey=util.getStringAttributeForParticularRowId(rowIdFactTable, "CUSTOMERKEY-fk");
+		 
+		 String rowIdInCustomerTable=util.getParticularRowIdForStringAttr("CUSTOMERKEY", customerKey);
+		 String customerCity=util.getStringAttributeForParticularRowId(rowIdInCustomerTable,"CUSTOMERCITY");
+		 String customerType=util.getStringAttributeForParticularRowId(rowIdInCustomerTable, "CUSTOMERTYPE");
+		 c.setCUSTOMERKEY(customerKey);
+		 c.setCUSTOMERCITY(customerCity);
+		 c.setCUSTOMERTYPE(customerType);
+		 return c;
+	 }
+	 public SalesPerson getSalesPerson(String rowIdFactTable)
+	 {
+		 SalesPerson s=new SalesPerson();
+		 Utility util=new Utility();
+		 String salesPersonKey=util.getStringAttributeForParticularRowId(rowIdFactTable, "SALESPERSONKEY-fk");
+		 
+		 String rowIdInSalesPersonTable=util.getParticularRowIdForStringAttr("SALESPERSONKEY", salesPersonKey);
+		 String salesPersonType=util.getStringAttributeForParticularRowId(rowIdInSalesPersonTable,"SALESPERSONTYPE");
+		 double ex=util.getDoubleAttributeForParticularRowId(rowIdInSalesPersonTable, "SALESPERSONEXPERIENCE");
+		 s.setSALESPERSONKEY(salesPersonKey);
+		 s.setSALESPERSONTYPE(salesPersonType);
+		 s.setSALESPERSONEXPERIENCE(ex);
+		 return s;
 	 }
 }

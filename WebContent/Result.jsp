@@ -9,12 +9,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Sales: </h1>
-<c:forEach items="${salesUnit}" var="sale">
-        <h2>${sale}</h2><br></br>
-    </c:forEach>
-<h1>Total Sales: </h1>   ${totalSales}
-<br></br>
-<h1>Count: </h1>${count}
+<h1>Sales List</h1>
+
+<table width="59%" border="1">
+	<tr>
+	<th>Product Name</th>
+	<th>Category</th>
+	<th>Customer City</th>
+	<th>Customer Type</th>
+	<th>SalesPerson Type</th>
+	<th>Experience</th>
+	<th>Sales Units</th>
+	</tr>
+	<c:forEach items="${salesList}" var="sale">
+	<tr>
+	<% if(4==4){ %>
+	<td>${sale.getProduct().getPRODUCTNAME()}</td>
+	<% } %>
+	<td>${sale.getProduct().getCATEGORY()}</td>
+	<td>${sale.getCustomer().getCUSTOMERCITY()}</td>
+	<td>${sale.getCustomer().getCUSTOMERTYPE()}</td>
+	<td>${sale.getSalesperson().getSALESPERSONTYPE()}</td>
+	<td>${sale.getSalesperson().getSALESPERSONEXPERIENCE()}</td>
+	
+	<td>${sale.getSlaesUnit()}</td>
+	</tr>
+	</c:forEach>
+</table>
 </body>
 </html>

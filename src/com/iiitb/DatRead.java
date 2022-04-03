@@ -4,7 +4,7 @@ import java.io.EOFException;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.BufferedOutputStream;
 import java.io.BufferedInputStream;
@@ -22,7 +22,7 @@ public class DatRead {
 		Customer p=new Customer();
 		p.setCUSTOMERCITY("Chennai");
 		p.setCUSTOMERTYPE("Wholesale");
-		HashSet<String> products=util.getCustomerForiegnKeys(p);
+		ArrayList<String> products=util.getCustomerForiegnKeys(p);
 		
 		for(String pr:products)
 		{

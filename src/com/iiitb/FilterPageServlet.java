@@ -1,6 +1,7 @@
 package com.iiitb;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.iiitb.*;
@@ -17,25 +18,31 @@ public class FilterPageServlet extends HttpServlet{
 	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException{
 		Utility util=new Utility();
 		
-		HashSet<String> productNames=new HashSet<>();
+		ArrayList<String> productNames=new ArrayList<>();
 		productNames=util.getStringUniqueValues("PRODUCTNAME");
-		req.setAttribute("productNames", productNames);
+		HashSet<String> h_productNames=new HashSet<>(productNames);
+		req.setAttribute("productNames", h_productNames);
 		
-		HashSet<String> categories=new HashSet<>();
+		ArrayList<String> categories=new ArrayList<>();
 		categories=util.getStringUniqueValues("CATEGORY");
-		req.setAttribute("categories", categories);
+		HashSet<String> h_categories=new HashSet<>(categories);
+		req.setAttribute("categories", h_categories);
+		System.out.println(h_categories);
 		
-		HashSet<String> customerCities=new HashSet<>();
+		ArrayList<String> customerCities=new ArrayList<>();
 		customerCities=util.getStringUniqueValues("CUSTOMERCITY");
-		req.setAttribute("customerCities", customerCities);
+		HashSet<String> h_customerCities=new HashSet<>(customerCities);
+		req.setAttribute("customerCities", h_customerCities);
 		
-		HashSet<String> customerTypes=new HashSet<>();
+		ArrayList<String> customerTypes=new ArrayList<>();
 		customerTypes=util.getStringUniqueValues("CUSTOMERTYPE");
-		req.setAttribute("customerTypes", customerTypes);
+		HashSet<String> h_customerTypes=new HashSet<>(customerTypes);
+		req.setAttribute("customerTypes", h_customerTypes);
 		
-		HashSet<String> salesPersonTypes=new HashSet<>();
+		ArrayList<String> salesPersonTypes=new ArrayList<>();
 		salesPersonTypes=util.getStringUniqueValues("SALESPERSONTYPE");
-		req.setAttribute("salesPersonTypes", salesPersonTypes);
+		HashSet<String> h_salesPersonTypes=new HashSet<>(salesPersonTypes);
+		req.setAttribute("salesPersonTypes", h_salesPersonTypes);
 		
 		String filterPage = "FilterPage.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(filterPage);
