@@ -17,6 +17,16 @@ public class FilterFromDat extends HttpServlet{
 		String customercity=req.getParameter("customercity");
 		String customertype=req.getParameter("customertype");
 		String salespersontype=req.getParameter("salespersontype");
+		//checkbox 
+		String checkBoxProductName=req.getParameter("ProductName");
+		String checkBoxCategory=req.getParameter("Category");
+		String checkBoxCustomerCity=req.getParameter("CustomerCity");
+		String checkBoxCustomerType=req.getParameter("CustomerType");
+		String checkSalesPersonType=req.getParameter("SalesPersonType");
+		String checkSalesPersonExp=req.getParameter("SalesPersonExp");
+		String exportReport=req.getParameter("exportReport");
+		
+		
 		Product product=new Product();
 		Customer customer=new Customer();
 		SalesPerson salesperson=new SalesPerson();
@@ -46,9 +56,11 @@ public class FilterFromDat extends HttpServlet{
 			rows=personRowIds;
 		else if(personRowIds.size()>0)
 			rows.retainAll(personRowIds);
+		//in case no filter is applied
+		if(rows.size()==0)
+		rows=util.getAllRowIdsFromSales();
 		
-		
-		System.out.println(rows);
+		//System.out.println(rows);
 		
 		/*
 		 ArrayList<Integer> salesUnit=new ArrayList<Integer>();
@@ -100,6 +112,17 @@ public class FilterFromDat extends HttpServlet{
 			salesList.add(i, sale);
 		}
 		req.setAttribute("salesList", salesList);
+		//setting check box attribute
+		req.setAttribute("checkBoxProductName", checkBoxProductName);
+		req.setAttribute("checkBoxCategory", checkBoxCategory);
+		req.setAttribute("checkBoxCustomerCity", checkBoxCustomerCity);
+		req.setAttribute("checkBoxCustomerType", checkBoxCustomerType);
+		req.setAttribute("checkSalesPersonType", checkSalesPersonType);
+		req.setAttribute("checkSalesPersonExp", checkSalesPersonExp);
+		
+		RequestDispatcher dispatcher2 = req.getRequestDispatcher("/export");
+		if(exportReport!=null)
+		dispatcher2.include(req, res);
 		String filterPage = "Result.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(filterPage);
         dispatcher.forward(req, res);

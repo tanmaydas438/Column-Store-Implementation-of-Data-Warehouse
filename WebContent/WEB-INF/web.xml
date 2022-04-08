@@ -38,6 +38,14 @@
   	<url-pattern>/filterFromDat</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>abcdg</servlet-name>
+  	<servlet-class>com.iiitb.ExportReport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdg</servlet-name>
+  	<url-pattern>/export</url-pattern>
+  </servlet-mapping>
   
   <display-name>DemoDM</display-name>
   <welcome-file-list>

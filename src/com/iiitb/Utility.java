@@ -760,4 +760,33 @@ public class Utility {
 		 s.setSALESPERSONEXPERIENCE(ex);
 		 return s;
 	 }
+	 public ArrayList<String> getAllRowIdsFromSales()
+	 {
+		 ArrayList<String> rowIds=new ArrayList<>();
+		 Utility util=new Utility();
+		 String path=util.getAttributePath("SALE_UNITS");
+		 try{
+	            DataInputStream din = new DataInputStream( new BufferedInputStream( 
+	                                      new FileInputStream(path) ) );
+	            
+	            
+				try{while(din.available()>0){
+					String id=din.readUTF();
+	                int data=din.readInt();
+	                rowIds.add(id);
+	            }}catch(EOFException e){
+	            	e.printStackTrace();
+	            }
+	        }
+	        catch(FileNotFoundException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(NullPointerException e){
+	            System.out.println(e.getMessage());
+	        }
+	       catch(IOException e){
+	            System.out.println(e.getMessage());
+	        }
+		 return rowIds;
+	 }
 }
