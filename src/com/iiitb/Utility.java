@@ -27,6 +27,8 @@ import org.xml.sax.SAXException;
 
 public class Utility {
 	String attr_type="";
+	String dimName="";
+	int dimNameFlag=0;
 	public String getAttributeType(String attr)
 	{
 		 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -116,6 +118,91 @@ public class Utility {
 	      }
 
 	  }
+	 
+	 public String getDimensionName(String attr)
+		{
+			 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			 try (InputStream is = readXmlFileIntoInputStream("D:\\IIITB\\Term II\\DM\\StarSchema.xml")) {
+		    	  
+
+		          // parse XML file
+		          DocumentBuilder db = dbf.newDocumentBuilder();
+
+		          // read from a project's resources folder
+		          Document doc = db.parse(is);
+
+		          //System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
+		          //System.out.println("------");
+		          if (doc.hasChildNodes()) {
+		        	  getDimensionNameRecursion(doc.getChildNodes(),attr);
+		          }
+
+		      } catch (ParserConfigurationException | SAXException | IOException e) {
+		          e.printStackTrace();
+		      }
+			 String dName=dimName;
+			 dimName="";
+			 dimNameFlag=0;
+			return dName;
+		}
+	 
+	 public void getDimensionNameRecursion(NodeList nodeList,String attr) {
+		  
+		  //String Array for storing column name and path of particular dat file
+		 
+		  
+		 if(dimNameFlag==1)
+			 return;
+	      for (int count = 0; count < nodeList.getLength(); count++) {
+
+	          Node tempNode = nodeList.item(count);
+	          if(dimNameFlag==1)
+	          {
+	        	  break;
+	          }
+
+	          // make sure it's element node.
+	          if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+	        	  //System.out.println("hello1");
+
+	              // get node name and value
+	              //System.out.println("\nNode Name =" + tempNode.getNodeName());
+	              //System.out.println("Node Value =" + tempNode.getTextContent());
+	              //System.out.println("Node value : " + tempNode.getNodeValue());
+	        	  if(tempNode.getNodeName().equals("name"))
+	        	  {
+	        		  //System.out.println("inside if");
+	        		  dimName=tempNode.getTextContent();
+	        		  //System.out.println(dimName);
+	        	  }
+	        	  if(tempNode.getNodeName().equals("dattrname"))
+	        	  {
+	        		  //System.out.println("inside if");
+	        		  String attrName=tempNode.getTextContent();
+	        		  if(attrName.equals(attr))
+	        		  {
+	        			  dimNameFlag=1;
+	        		  }
+	        	  }
+
+
+	        	  
+	              
+	              
+	        	  	if (tempNode.hasChildNodes()) {
+	                  // loop again if has child nodes
+	        	  		getDimensionNameRecursion(tempNode.getChildNodes(),attr);
+	              }
+
+	              //System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
+
+	          }
+
+	      }
+
+	  }
+
+
 	 
 	 public String getAttributePath(String attrName)
 	 {
@@ -789,4 +876,75 @@ public class Utility {
 	        }
 		 return rowIds;
 	 }
+	 
+	 public ArrayList<ArrayList<String>> getAllCombinations(ArrayList<String> list)
+	 {
+		 ArrayList<ArrayList<String>> res=new ArrayList<>();
+		 int n=list.size();
+		 int[] visited=new int[n];
+		 ArrayList<String> temp=new ArrayList<>();
+		 for(int i=1;i<=n;i++)
+		 {
+			 recCombinations(res,list,visited,i,temp,0);
+		 }
+		 return res;
+		 
+	 }
+	 
+	 public void recCombinations(ArrayList<ArrayList<String>> res,ArrayList<String> list,int[] visited,int size,ArrayList<String> temp,int index)
+	 {
+		 if(temp.size()==size)
+		 {
+			 res.add(new ArrayList(temp));
+			 return;
+		 }
+		 for(int i=index;i<list.size();i++)
+		 {
+			 if(visited[i]==0)
+			 {
+				 temp.add(list.get(i));
+				 visited[i]=1;
+				 recCombinations(res, list, visited, size, temp, i+1);
+				 visited[i]=0;
+				 temp.remove(list.get(i));
+			 }
+		 }
+	 }
+	 
+	public HashMap<Lattice,Integer> getGroupBy(String attr1,String attr2,String attr3)
+	{
+		Utility util=new Utility();
+		HashMap<Lattice,Integer> hm=new HashMap<>();
+		ArrayList<String> allRowsInSales=new ArrayList<>();
+		allRowsInSales=util.getAllRowIdsFromSales();
+		for(String rowId:allRowsInSales)
+		{
+			String productKey=util.getStringAttributeForParticularRowId(rowId, "PRODUCTKEY-fk");
+			String customerKey=util.getStringAttributeForParticularRowId(rowId, "CUSTOMERKEY-fk");
+			String salesPersonKey=util.getStringAttributeForParticularRowId(rowId, "SALESPERSONKEY-fk");
+			String rowIdInProduct=util.getParticularRowIdForStringAttr("PRODUCTKEY",productKey);
+			String rowIdInCustomer=util.getParticularRowIdForStringAttr("CUSTOMERKEY",customerKey);
+			String rowIdInSalesPerson=util.getParticularRowIdForStringAttr("SALESPERSONKEY",salesPersonKey);
+			String attr1Value=util.getStringAttributeForParticularRowId(rowIdInProduct, attr1);
+			String attr2Value=util.getStringAttributeForParticularRowId(rowIdInCustomer, attr2);
+			String attr3Value=util.getStringAttributeForParticularRowId(rowIdInSalesPerson, attr3);
+			Lattice l=new Lattice();
+			if(!attr1.equals(""))
+			l.setAttr1(attr1Value);
+			if(!attr2.equals(""))
+			l.setAttr2(attr2Value);
+			if(!attr3.equals(""))
+			l.setAttr3(attr3Value);
+			int salesUnit=util.getIntegerAttributeForParticularRowId(rowId,"SALE_UNITS");
+			if(hm.containsKey(l))
+			{
+				hm.put(l, hm.get(l)+salesUnit);
+			}
+			else
+				hm.put(l, salesUnit);
+			
+		}
+		return hm;
+	}
+	 
 }

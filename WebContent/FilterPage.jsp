@@ -39,8 +39,11 @@ background-color: rgb(167, 228, 225);
 }
 .text-center {
   text-align: center;
+  align: center;
+  margin-top : 10;
   /* height: 20%; */
-  width: 20%;
+  left: 50%;
+  margin-bottom: 10;
   
 }
 </style>
@@ -160,8 +163,8 @@ background-color: rgb(167, 228, 225);
         <label for="ExportReport">Want To Export Report</label>
         <input type="checkbox" name="exportReport" id="exportReport" value="abc">
     </div>
-<div class="text-center">
-    <input style="font-size: 150%" type="submit" value="Filter" />    
+<div class="text-center" align="center">
+    <input style="font-size: 150%; font-weight:bold; padding:0.3%" type="submit" value="Filter" id="filter"/>    
 </div>
 
 </form>                             

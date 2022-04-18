@@ -1,15 +1,10 @@
 package com.iiitb;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.DataInputStream;
-import java.io.IOException;
+
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
-import java.io.BufferedOutputStream;
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
+
  
 
 public class DatRead {
@@ -17,58 +12,52 @@ public class DatRead {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//String pa="D:\IIITB\Term II\DM\Project\dwh1\\\dim3\\dim3-attr2.dat";
 		Utility util=new Utility();
-		Customer p=new Customer();
-		p.setCUSTOMERCITY("Chennai");
-		p.setCUSTOMERTYPE("Wholesale");
-		ArrayList<String> products=util.getCustomerForiegnKeys(p);
 		
-		for(String pr:products)
+		HashMap<Lattice,Integer> hm=new HashMap<>();
+		//hm=util.getGroupBy("PRODUCTNAME", "CUSTOMERCITY", "SALESPERSONTYPE");
+		hm=util.getGroupBy("PRODUCTNAME", "CUSTOMERCITY", "");
+		Set<Lattice> hs=new HashSet<>();
+		hs=hm.keySet();
+		for(Lattice l:hs)
 		{
-			System.out.println(pr);
+			System.out.println(l.getAttr1());
+			System.out.println(l.getAttr2());
+			System.out.println(l.getAttr3());
+			System.out.println(hm.get(l));
 		}
 		
-		//System.out.println(util.getAttributePath("dim1-attr1"));
-		/*HashMap<String,Integer> hm=util.getIntegerColumnValues("dim1-attr1");
-		for(String key:hm.keySet())
+		/*ArrayList<String> allRows=util.getAllRowIdsFromSales();
+		HashMap<String,Integer> hm=new HashMap<>();
+		for(String id:allRows)
 		{
-			System.out.print(key);
+			String pk=util.getStringAttributeForParticularRowId(id, "PRODUCTKEY-fk");
+			int sales=util.getIntegerAttributeForParticularRowId(id, "SALE_UNITS");
+			if(hm.containsKey(pk))
+				hm.put(pk,hm.get(pk)+sales);
+			else
+				hm.put(pk, sales);
+		}
+		
+		Set<String> hs=new HashSet<>();
+		hs=hm.keySet();
+		for(String key:hs)
+		{
+			String rowId=util.getParticularRowIdForStringAttr("PRODUCTKEY", key);
+			String name=util.getStringAttributeForParticularRowId(rowId, "PRODUCTNAME");
+			System.out.print(name+":");
 			System.out.print(hm.get(key));
 			System.out.println();
 		}*/
-		/*try{
-            String attr = "";
-            String p = "";
-            DataInputStream din = new DataInputStream( new BufferedInputStream( 
-                                      new FileInputStream("D:/IIITB/Term II/DM/Project/SALES/path.dat") ) );
-            
-            
-            boolean eof=false;
-			try{while(din.available()>0){
-				String key=din.readUTF();
-                String value=din.readUTF();
-                
-                
-                System.out.print(key+"  :");
-                System.out.print(value);
-                System.out.println();
-            }}catch(EOFException e){
-            	e.printStackTrace();
-            }
-            System.out.println("Fetched Information:");
-            System.out.println(attr);
-            System.out.println(p);
-        }
-        catch(FileNotFoundException e){
-            System.out.println(e.getMessage());
-        }
-       catch(NullPointerException e){
-            System.out.println(e.getMessage());
-        }
-       catch(IOException e){
-            System.out.println(e.getMessage());
-        }*/
+		/*ArrayList<String> arr=new ArrayList<>();
+		arr.add("Tanmay");
+		arr.add("Das");
+		arr.add("Kumar");
+		ArrayList<ArrayList<String>> res=new ArrayList<>();
+		res=util.getAllCombinations(arr);
+		System.out.println(res);
+		System.out.println("1:"+util.getDimensionName("PRODUCTNAME"));
+		System.out.println("1:"+util.getDimensionName("SALESPERSONTYPE"));*/
     }
 
 	}

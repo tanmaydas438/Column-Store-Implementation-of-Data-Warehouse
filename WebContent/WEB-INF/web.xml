@@ -47,6 +47,24 @@
   	<url-pattern>/export</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>abcdh</servlet-name>
+  	<servlet-class>com.iiitb.NodeCreation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdh</servlet-name>
+  	<url-pattern>/nodeCreation</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>abcdi</servlet-name>
+  	<servlet-class>com.iiitb.ComputeGroupBy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdi</servlet-name>
+  	<url-pattern>/computeGroupBy</url-pattern>
+  </servlet-mapping>
+  
   <display-name>DemoDM</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
