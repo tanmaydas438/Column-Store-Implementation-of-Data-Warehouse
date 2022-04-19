@@ -24,6 +24,10 @@ public class NodeCreation extends HttpServlet{
 		Utility util=new Utility();
 		ArrayList<ArrayList<String>> nodes=util.getAllCombinations(attrList);
 		req.setAttribute("nodes", nodes);
+		
+		RequestDispatcher dispatcher2 = req.getRequestDispatcher("/exportNodes");
+		dispatcher2.include(req, res);
+		
 		String latticePage = "LatticeOfCuboid.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(latticePage);
         dispatcher.forward(req, res);

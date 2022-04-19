@@ -65,6 +65,15 @@
   	<url-pattern>/computeGroupBy</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>abcdj</servlet-name>
+  	<servlet-class>com.iiitb.ExportNodes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdj</servlet-name>
+  	<url-pattern>/exportNodes</url-pattern>
+  </servlet-mapping>
+  
   <display-name>DemoDM</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
