@@ -67,5 +67,17 @@
 	</tr>
 	</c:forEach>
 </table>
+
+	<div >
+        
+        <a href="Filter.html">Warehousing Operations</a>
+
+    </div>
+    
+    <div >
+        
+        <a href="FilterPage.jsp">Slice & Dice</a>
+
+    </div>
 </body>
 </html>

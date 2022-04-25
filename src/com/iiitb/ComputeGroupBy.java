@@ -41,12 +41,18 @@ public class ComputeGroupBy extends HttpServlet{
 		Set<Lattice> hs=new HashSet<>();
 		hs=hm.keySet();
 		ArrayList<NodeValue> nodeValueList=new ArrayList<>();
+		HashSet<String> uniqueAttr1=new HashSet<>();
+		HashSet<String> uniqueAttr2=new HashSet<>();
+		HashSet<String> uniqueAttr3=new HashSet<>();
 		for(Lattice l:hs)
 		{
 			NodeValue n=new NodeValue();
 			n.setAttr1(l.getAttr1());
 			n.setAttr2(l.getAttr2());
 			n.setAttr3(l.getAttr3());
+			uniqueAttr1.add(l.getAttr1());
+			uniqueAttr2.add(l.getAttr2());
+			uniqueAttr3.add(l.getAttr3());
 			n.setValue(hm.get(l));
 			nodeValueList.add(n);
 			//System.out.println("n..attr1"+n.getAttr1());
@@ -57,6 +63,9 @@ public class ComputeGroupBy extends HttpServlet{
 		req.setAttribute("attr1", attr1);
 		req.setAttribute("attr2", attr2);
 		req.setAttribute("attr3", attr3);
+		req.setAttribute("uniqueAttr1List", uniqueAttr1);
+		req.setAttribute("uniqueAttr2List", uniqueAttr2);
+		req.setAttribute("uniqueAttr3List", uniqueAttr3);
 		String groupbyPage = "GroupBy.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(groupbyPage);
         dispatcher.forward(req, res);

@@ -12,7 +12,7 @@
 
 	<c:forEach items="${nodes}" var="node">
             <form method="post" action="computeGroupBy">
-            <h1>${node}</h1><input type="text" name="comb" value="${node}">
+            <h1>${node}</h1><input type="hidden" name="comb" value="${node}" readonly>
             <input type="submit" value="Show"/>
             </form>
     </c:forEach>
