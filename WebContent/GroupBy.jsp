@@ -10,8 +10,12 @@
 <title>Insert title here</title>
 
 <script type = "text/javascript" src="function.js"></script>
+<script type = "text/javascript" src="PieChart.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 </head>
-<body>
+<body onload="caller()">
 <table width="59%" border="1" align="center" bordercolor="#FF5733" bgcolor="#E7F7F1" id="myTable">
 	<tr>
 	<%	if(!request.getAttribute("attr1").equals("")){ %>
@@ -101,5 +105,9 @@
         <div><input type = "button" onclick = "filterfunction()" value = "Filter"></div>
  		<div><input type="button" value="Clear Filter" onClick="document.location.reload(true)"></div>
  </div>
+ 
+<canvas id="myPieChart" style="width:100%; max-width:700px"></canvas>
+<canvas id="myBarChart" style="width:100%; max-width:700px"></canvas>
+
 </body>
 </html>
