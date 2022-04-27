@@ -57,12 +57,31 @@
   </servlet-mapping>
   
    <servlet>
+  	<servlet-name>abcdk</servlet-name>
+  	<servlet-class>com.iiitb.NodeCreation1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdk</servlet-name>
+  	<url-pattern>/nodeCreation1</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
   	<servlet-name>abcdi</servlet-name>
   	<servlet-class>com.iiitb.ComputeGroupBy</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>abcdi</servlet-name>
   	<url-pattern>/computeGroupBy</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>abcdl</servlet-name>
+  	<servlet-class>com.iiitb.ComputeGroupBy1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdl</servlet-name>
+  	<url-pattern>/computeGroupBy1</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -73,6 +92,16 @@
   	<servlet-name>abcdj</servlet-name>
   	<url-pattern>/exportNodes</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>abcdm</servlet-name>
+  	<servlet-class>com.iiitb.ExportNodes1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abcdm</servlet-name>
+  	<url-pattern>/exportNodes1</url-pattern>
+  </servlet-mapping>
+  
   
   <display-name>DemoDM</display-name>
   <welcome-file-list>

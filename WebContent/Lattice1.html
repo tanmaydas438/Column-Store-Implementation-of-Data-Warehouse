@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+
+* {
+     margin: 0px;
+     padding: 0px;
+     /* width: 100%; */
+     overflow: hidden;
+
+}
+.container{
+     overflow: hidden;
+     /* width: 800%; */
+     white-space: nowrap;
+}
+.container > div {
+     width: 300px;
+     height: 100px;
+     float: left;
+     margin: 0 4px 0 0;
+     background-color:rgb(167, 228, 225);
+}  
+.bgrnd {
+background-color: rgb(167, 228, 225);
+ /* background-image: url("Filter.jpg"); */
+ background-repeat: no-repeat;
+ background-position: center;
+
+ height=100%;
+}
+.text-center {
+  text-align: center;
+  align: center;
+  margin-top : 10;
+  /* height: 20%; */
+  left: 50%;
+  margin-bottom: 10;
+  
+}
+</style>
+<body class="bgrnd">
+<form method="post" action="nodeCreation1">
+
+<div>
+    <h1 style="text-align: center;">Lattice Of Cuboid</h1>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+
+    <div>
+        <h1>Product :</h1>
+    </div>
+    <div> 
+        <h1>Product Name</h1>
+        <input type="checkbox" id="productname" name="productname" value="PRODUCTNAME">
+        
+	</div>
+<div>
+    
+    <h1>Category</h1>
+    <input type="checkbox" id="category" name="category" value="CATEGORY">
+</div>
+</div>
+
+<div class="container">
+
+    <div>
+        <h1>Customer :</h1>
+    </div>
+    
+    <div>
+        
+    <h1>Customer City</h1>
+    <input type="checkbox" id="customer_city" name="customercity" value="CUSTOMERCITY">
+    </div>
+    
+    
+    <div>
+        <h1>Customer Type</h1>
+        <input type="checkbox" id="customer_type" name="customertype" value="CUSTOMERTYPE">
+    </div>
+</div>
+  
+<div class="container">
+
+    <div>
+        <h1>SalesPerson :</h1>
+    </div>
+    
+    <div>
+        
+        
+        <h1>SalesPerson Type</h1>
+        <input type="checkbox" id="salesperson_type" name="salespersontype" value="SALESPERSONTYPE">
+    </div>
+</div>
+
+<div class="text-center" align="center">
+    <input style="font-size: 150%; font-weight:bold; padding:0.3%" type="submit" value="Generate" id="filter"/>    
+</div>
+
+</form> 
+                          
+</body>
+
+</html>

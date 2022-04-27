@@ -946,5 +946,47 @@ public class Utility {
 		}
 		return hm;
 	}
+	
+	public HashMap<Lattice1,Integer> getGroupBy1(String attr1,String attr2,String attr3,String attr4,String attr5)
+	{
+		Utility util=new Utility();
+		HashMap<Lattice1,Integer> hm=new HashMap<>();
+		ArrayList<String> allRowsInSales=new ArrayList<>();
+		allRowsInSales=util.getAllRowIdsFromSales();
+		for(String rowId:allRowsInSales)
+		{
+			String productKey=util.getStringAttributeForParticularRowId(rowId, "PRODUCTKEY-fk");
+			String customerKey=util.getStringAttributeForParticularRowId(rowId, "CUSTOMERKEY-fk");
+			String salesPersonKey=util.getStringAttributeForParticularRowId(rowId, "SALESPERSONKEY-fk");
+			String rowIdInProduct=util.getParticularRowIdForStringAttr("PRODUCTKEY",productKey);
+			String rowIdInCustomer=util.getParticularRowIdForStringAttr("CUSTOMERKEY",customerKey);
+			String rowIdInSalesPerson=util.getParticularRowIdForStringAttr("SALESPERSONKEY",salesPersonKey);
+			String attr1Value=util.getStringAttributeForParticularRowId(rowIdInProduct, attr1);
+			String attr2Value=util.getStringAttributeForParticularRowId(rowIdInCustomer, attr2);
+			String attr3Value=util.getStringAttributeForParticularRowId(rowIdInSalesPerson, attr3);
+			String attr4Value=util.getStringAttributeForParticularRowId(rowIdInProduct, attr4);
+			String attr5Value=util.getStringAttributeForParticularRowId(rowIdInCustomer, attr5);
+			Lattice1 l=new Lattice1();
+			if(!attr1.equals(""))
+			l.setAttr1(attr1Value);
+			if(!attr2.equals(""))
+			l.setAttr2(attr2Value);
+			if(!attr3.equals(""))
+			l.setAttr3(attr3Value);
+			if(!attr4.equals(""))
+				l.setAttr4(attr4Value);
+			if(!attr5.equals(""))
+				l.setAttr5(attr5Value);
+			int salesUnit=util.getIntegerAttributeForParticularRowId(rowId,"SALE_UNITS");
+			if(hm.containsKey(l))
+			{
+				hm.put(l, hm.get(l)+salesUnit);
+			}
+			else
+				hm.put(l, salesUnit);
+			
+		}
+		return hm;
+	}
 	 
 }

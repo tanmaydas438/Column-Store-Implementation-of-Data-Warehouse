@@ -22,15 +22,29 @@ function filterfunction()
 		var oCells = oTable.rows.item(i).cells;
 		var cellLength = oCells.length;
 		var flag=true;
-				if(a1 && (attr1.localeCompare("none")!=0) && (oCells.item(0).innerHTML.localeCompare(attr1)!=0))
+		var j=0;
+		var k=0;
+		var l=0;
+		if(a1)
+			k=1;
+		if(!a1 && a2)
+			l=1;
+		if(a1 && a2)
+			l=2;
+		console.log(j);
+		console.log(k);
+		console.log(l);
+			
+		
+				if(a1 && (attr1.localeCompare("none")!=0) && (oCells.item(j).innerHTML.localeCompare(attr1)!=0))
 				{
 					flag=false;
 				}
-				if(a2 && (attr2.localeCompare("none")!=0) &&(oCells.item(1).innerHTML.localeCompare(attr2)!=0))
+				if(a2 && (attr2.localeCompare("none")!=0) &&(oCells.item(k).innerHTML.localeCompare(attr2)!=0))
 				{
 					flag=false;
 				}
-				if(a3 && (attr3.localeCompare("none")!=0) &&(oCells.item(2).innerHTML.localeCompare(attr3)!=0))
+				if(a3 && (attr3.localeCompare("none")!=0) &&(oCells.item(l).innerHTML.localeCompare(attr3)!=0))
 				{
 					flag=false;
 				}
