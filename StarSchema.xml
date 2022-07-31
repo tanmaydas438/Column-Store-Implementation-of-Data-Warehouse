@@ -1,0 +1,77 @@
+<starschema xmlns="http://www.iiitb.ac.in/dm/group15"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.iiitb.ac.in/dm/group15 XMLSchemaForStarSchema.xsd"
+            dwhid="dwh1" rootfolder="/home/dwhhome">
+  <dwhname>retaildb</dwhname>
+  <dimensionlist>
+    <dimension dimid="dim1">
+      <name>Store</name>
+      <dimattrlist>
+        <dattr dattrid="dim1-attr1">
+          <dattrname>storeid</dattrname>
+          <dtype>integer</dtype>
+          <iskey>true</iskey>
+        </dattr>
+        <dattr dattrid="dim1-attr2">
+          <dattrname>storename</dattrname>
+          <dtype>string</dtype>
+          <iskey>false</iskey>
+        </dattr>
+      </dimattrlist>
+    </dimension>
+    <dimension dimid="dim2">
+      <name>Store</name>
+      <dimattrlist>
+        <dattr dattrid="dim2-attr1">
+          <dattrname>storeid</dattrname>
+          <dtype>integer</dtype>
+          <iskey>true</iskey>
+        </dattr>
+        <dattr dattrid="dim2-attr2">
+          <dattrname>storename</dattrname>
+          <dtype>string</dtype>
+          <iskey>false</iskey>
+        </dattr>
+      </dimattrlist>
+    </dimension>
+    <dimension dimid="dim3">
+      <name>Store</name>
+      <dimattrlist>
+        <dattr dattrid="dim3-attr1">
+          <dattrname>storeid</dattrname>
+          <dtype>integer</dtype>
+          <iskey>true</iskey>
+        </dattr>
+        <dattr dattrid="dim3-attr2">
+          <dattrname>storename</dattrname>
+          <dtype>string</dtype>
+          <iskey>false</iskey>
+        </dattr>
+      </dimattrlist>
+    </dimension>
+  </dimensionlist>
+  <facttable factableid="fact-table-01">
+    <dimfk fkid="dimfk-01">
+      <dimfkname>store-id</dimfkname>
+      <refers>dim1-attr1</refers>
+    </dimfk>
+    <dimfk fkid="dimfk-02">
+      <dimfkname>store-id</dimfkname>
+      <refers>dim1-attr1</refers>
+    </dimfk>
+    <factvariable>
+      <fvariable fid="factvar01">
+        <fname>totalsales</fname>
+        <ftype>float</ftype>
+      </fvariable>
+      <fvariable fid="factvar02">
+        <fname>totalsales</fname>
+        <ftype>float</ftype>
+      </fvariable>
+    </factvariable>
+  </facttable>
+  <aggregatefunctions>
+    <agfunction>sum</agfunction>
+    <agfunction>avg</agfunction>
+  </aggregatefunctions>
+</starschema>
